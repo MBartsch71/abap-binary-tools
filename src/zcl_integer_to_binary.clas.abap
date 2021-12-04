@@ -8,14 +8,10 @@
    PRIVATE SECTION.
      CONSTANTS minimal_number_of_calculation TYPE i VALUE 1.
 
+     METHODS abort_at_negative_input IMPORTING number TYPE i..
+
      METHODS convert_to_binary       IMPORTING number        TYPE i
                                      RETURNING VALUE(result) TYPE string.
-
-     METHODS calculate_quotient      IMPORTING number        TYPE i
-                                     RETURNING VALUE(result) TYPE i.
-
-     METHODS calculate_rest          IMPORTING number        TYPE i
-                                     RETURNING VALUE(result) TYPE i.
 
      METHODS end_of_calculation      IMPORTING number        TYPE i
                                      RETURNING VALUE(result) TYPE abap_bool.
@@ -23,7 +19,11 @@
      METHODS initialize_result       IMPORTING number        TYPE i
                                      RETURNING VALUE(result) TYPE char1.
 
-     METHODS abort_at_negative_input IMPORTING number TYPE i..
+     METHODS calculate_quotient      IMPORTING number        TYPE i
+                                     RETURNING VALUE(result) TYPE i.
+
+     METHODS calculate_rest          IMPORTING number        TYPE i
+                                     RETURNING VALUE(result) TYPE i.
 
  ENDCLASS.
 
