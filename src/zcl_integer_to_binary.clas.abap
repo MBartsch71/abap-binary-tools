@@ -9,7 +9,7 @@
    PRIVATE SECTION.
      CONSTANTS minimal_number_of_calculation TYPE i VALUE 1.
 
-     METHODS abort_at_negative_input IMPORTING number TYPE i..
+     METHODS abort_at_negative_input IMPORTING number TYPE i.
 
      METHODS convert_to_binary       IMPORTING number        TYPE i
                                      RETURNING VALUE(result) TYPE string.
