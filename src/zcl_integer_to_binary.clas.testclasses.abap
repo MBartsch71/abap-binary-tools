@@ -7,8 +7,8 @@ CLASS tc_decimal_to_binary DEFINITION FINAL FOR TESTING
 
     METHODS setup.
 
-    METHODS convert_5467_to_binary FOR TESTING.
-    METHODS converting_negative_i  FOR TESTING.
+    METHODS convert_5467_to_binary      FOR TESTING.
+    METHODS converting_negative_integer FOR TESTING.
 
 ENDCLASS.
 
@@ -25,7 +25,7 @@ CLASS tc_decimal_to_binary IMPLEMENTATION.
         act = cut->convert( 5467 ) ).
   ENDMETHOD.
 
-  METHOD converting_negative_i.
+  METHOD converting_negative_integer.
     TRY.
         cut->convert( -12 ).
       CATCH cx_negative_input INTO DATA(lx_error).

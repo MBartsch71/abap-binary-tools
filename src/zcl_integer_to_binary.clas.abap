@@ -5,6 +5,7 @@
    PUBLIC SECTION.
      METHODS convert IMPORTING number        TYPE i
                      RETURNING VALUE(result) TYPE string.
+
    PRIVATE SECTION.
      CONSTANTS minimal_number_of_calculation TYPE i VALUE 1.
 
@@ -65,6 +66,5 @@
    METHOD calculate_rest.
      result = number MOD 2.
    ENDMETHOD.
-
 
  ENDCLASS.
