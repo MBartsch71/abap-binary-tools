@@ -1,5 +1,9 @@
 # abap-binary-tools
-This is a collection of binary tools for ABAP. Because there are no build-in binary classes I decide to develop some useful converters as well as capabilities to calculate with binary numbers.
+This is a collection of binary tools for ABAP. 
+
+Due to the lack of nice build-in classes for working with binary values, I decided to develop some useful converters as well as capabilities to calculate with binary numbers.
+
+Please feel free to extend, comment or request new functionality.
 
 ## Converters
 - [Integer to Binary](src/zcl_integer_to_binary.clas.abap)  
