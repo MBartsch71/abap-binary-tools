@@ -1,2 +1,0 @@
-CLASS cx_negative_input IMPLEMENTATION.
-ENDCLASS.
