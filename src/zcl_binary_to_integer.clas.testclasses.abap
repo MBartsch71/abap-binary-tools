@@ -1,25 +1,29 @@
-class tc_binary_to_integer definition final for testing
-  duration short
-  risk level harmless.
+CLASS tc_binary_to_integer DEFINITION FINAL FOR TESTING
+  DURATION SHORT
+  RISK LEVEL HARMLESS.
 
-  private section.
-   data cut type ref to zcl_binary_to_integer.
+  PRIVATE SECTION.
+    DATA cut TYPE REF TO zif_from_binary.
 
-   methods setup.
-   methods convert_1001_bin_decimal for testing.
-endclass.
+    METHODS setup.
+    METHODS convert_1001_bin_decimal FOR TESTING.
+
+ENDCLASS.
 
 
-class tc_binary_to_integer implementation.
+CLASS tc_binary_to_integer IMPLEMENTATION.
 
-  method setup.
-    cut = new #( ).
-  endmethod.
+  METHOD setup.
+    cut = NEW zcl_binary_to_integer( ).
+  ENDMETHOD.
 
-  method convert_1001_bin_decimal.
+  METHOD convert_1001_bin_decimal.
+    DATA(result) = cut->convert( |1010101011011| ).
+    ASSIGN result->* TO FIELD-SYMBOL(<result>).
+
     cl_abap_unit_assert=>assert_equals(
         exp = 5467
-        act = cut->convert( |1010101011011| ) ).
-  endmethod.
+        act = <result> ).
+  ENDMETHOD.
 
-endclass.
+ENDCLASS.

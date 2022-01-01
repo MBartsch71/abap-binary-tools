@@ -3,8 +3,7 @@ CLASS zcl_binary_to_integer DEFINITION
   CREATE PUBLIC .
 
   PUBLIC SECTION.
-    METHODS convert IMPORTING input         TYPE string
-                    RETURNING VALUE(result) TYPE i.
+    INTERFACES zif_from_binary.
 
   PRIVATE SECTION.
     CONSTANTS c_binary_base TYPE i VALUE 2.
@@ -17,6 +16,9 @@ CLASS zcl_binary_to_integer DEFINITION
 
     METHODS save_input_as_binary_number    IMPORTING input TYPE string.
 
+    METHODS convert_from_binary            IMPORTING input         TYPE string
+                                           RETURNING VALUE(result) TYPE i.
+
     METHODS extract_leading_digit          IMPORTING i_binary_number TYPE string
                                            RETURNING VALUE(result)   TYPE string.
 
@@ -28,27 +30,34 @@ CLASS zcl_binary_to_integer DEFINITION
     METHODS compute_power_of_two_for_digit IMPORTING binary_digit  TYPE string
                                            RETURNING VALUE(result) TYPE i.
 
-    METHODS compute_current_power_of_two RETURNING VALUE(result) TYPE i.
+    METHODS compute_current_power_of_two   RETURNING VALUE(result) TYPE i.
 
     METHODS increase_current_power_by_one.
-ENDCLASS.
 
+    METHODS referencing                    IMPORTING number        TYPE i
+                                           RETURNING VALUE(result) TYPE REF TO data.
+
+ENDCLASS.
 
 
 CLASS zcl_binary_to_integer IMPLEMENTATION.
 
-  METHOD convert.
+  METHOD zif_from_binary~convert.
     save_input_as_binary_number( input ).
-    DATA(binary_digit) = extract_leading_digit( binary_number ).
-    IF string_has_multiple_digits( binary_number ).
-      shorten_binary_number_left( ).
-      result = convert( binary_number ).
-    ENDIF.
-    result = result + ( binary_digit * compute_power_of_two_for_digit( binary_digit ) ).
+    result = referencing( convert_from_binary( input ) ).
   ENDMETHOD.
 
   METHOD save_input_as_binary_number.
     binary_number = input.
+  ENDMETHOD.
+
+  METHOD convert_from_binary.
+    DATA(binary_digit) = extract_leading_digit( binary_number ).
+    IF string_has_multiple_digits( binary_number ).
+      shorten_binary_number_left( ).
+      result = convert_from_binary( binary_number ).
+    ENDIF.
+    result = result + ( binary_digit * compute_power_of_two_for_digit( binary_digit ) ).
   ENDMETHOD.
 
   METHOD extract_leading_digit.
@@ -74,6 +83,12 @@ CLASS zcl_binary_to_integer IMPLEMENTATION.
 
   METHOD increase_current_power_by_one.
     current_power = current_power + c_value_one.
+  ENDMETHOD.
+
+  METHOD referencing.
+    CREATE DATA result TYPE i.
+    ASSIGN result->* TO FIELD-SYMBOL(<result>).
+    <result> = number.
   ENDMETHOD.
 
 ENDCLASS.

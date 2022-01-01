@@ -5,7 +5,6 @@
    PUBLIC SECTION.
      INTERFACES zif_to_binary.
 
-
    PRIVATE SECTION.
      CONSTANTS c_minimal_calculation_number TYPE i VALUE 1.
      CONSTANTS c_binary_base TYPE i VALUE 2.
@@ -38,7 +37,6 @@
      METHODS dereference                    IMPORTING data_reference TYPE REF TO data
                                             RETURNING VALUE(result)  TYPE i.
  ENDCLASS.
-
 
 
  CLASS zcl_integer_to_binary IMPLEMENTATION.
